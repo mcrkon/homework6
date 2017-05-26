@@ -1,6 +1,6 @@
 (function() {
 'use strict';
-//=============================================================================
+
 
 var people = [];
 var nextId = 1000;
@@ -11,7 +11,7 @@ $('#new-person').on( 'click', addNewPerson );
 $('#people').on( 'click', '.edit', editPerson );
 $('#people').on( 'click', '.delete', confirmAndDeletePerson );
 
-//=============================================================================
+
 
 function displayPeople( ) {
     var i, len, person;
@@ -48,13 +48,13 @@ function displayPeople( ) {
     $('#form-page').hide();
 }
 
-//=============================================================================
+
 
 function addNewPerson( ) {
     addOrEditPerson( );
 }
 
-//=============================================================================
+
 
 function editPerson( evt ) {
     var i = indexOfEventPerson( evt );
@@ -63,7 +63,7 @@ function editPerson( evt ) {
     }
 }
 
-//-----------------------------------------------------------------------------
+
 
 function confirmAndDeletePerson( evt ) {
     var i = indexOfEventPerson( evt );
@@ -75,14 +75,14 @@ function confirmAndDeletePerson( evt ) {
         }
     }
 
-    //-------------------------------------------------------------------------
+  
 
     function deletePerson( idx ) {
         people.splice( idx, 1 );
     }
 }
 
-//-----------------------------------------------------------------------------
+
 
 function indexOfEventPerson( evt ) {
     var btn = evt.target;
@@ -98,7 +98,7 @@ function indexOfEventPerson( evt ) {
     return -1;
 }
 
-//=============================================================================
+
 
 function addOrEditPerson( person ) {
     if ( person ) {
@@ -114,7 +114,6 @@ function addOrEditPerson( person ) {
     $('#table-page').hide();
     $('#form-page').show();
 
-    //=========================================================================
 
     function addOrUpdatePerson( evt ) {
         var newPerson;
@@ -136,5 +135,34 @@ function addOrEditPerson( person ) {
     }
 }
 
-//=============================================================================
-})();
+})(); 
+
+var people = [];
+var ITEMS_KEY = 'LSDB_items';
+var nextId = 1000;
+
+getPeople( );
+displayPeople( );
+
+$('#new-person').on( 'click', addNewPerson );
+$('#people').on( 'click', '.edit', editPerson );
+$('#people').on( 'click', '.delete', confirmAndDeletePerson );
+
+function getPeople( ) {
+    try {
+        var peopleString = localStorage[ ITEMS_KEY ];
+        if ( peopleString ) {
+            people = JSON.parse( peopleString );
+            nextId = getNextId();
+        }
+      
+  function displayPeople( ) {
+    
+    $('#people').empty();
+    td = $( '<td>' );
+        td.text( person.name );
+        tr.append( td );
+
+        td = $( '<td>' );
+        td.text( person.age );
+        tr.append( td );
